@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Love Story Scrapbook 📖</title>
+    <title>happy 11</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #8B4513 0%, #D2B48C 50%, #F5DEB3 100%);
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #5865F2 0%, #7289DA 50%, #99AAB5 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,8 +22,8 @@
         }
 
         .scrapbook {
-            width: 700px;
-            height: 500px;
+            width: 800px;
+            height: 600px;
             position: relative;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border-radius: 10px;
@@ -34,14 +34,15 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: #FFF8DC;
-            border: 3px solid #8B4513;
+            background: #36393f;
+            border: 3px solid #202225;
             border-radius: 10px;
             transform-origin: left center;
             transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000);
             cursor: pointer;
             display: flex;
-            padding: 30px;
+            flex-direction: column;
+            padding: 0;
             box-sizing: border-box;
         }
 
@@ -62,35 +63,20 @@
             z-index: -1 !important;
         }
 
-        .page-left, .page-right {
-            width: 50%;
-            height: 100%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .page-left {
-            border-right: 2px dashed #D2B48C;
-        }
-
         /* Cover page styling */
         .cover {
-            background: linear-gradient(145deg, #8B4513, #A0522D);
-            color: #FFF8DC;
+            background: linear-gradient(135deg, #5865F2, #7289DA);
+            color: white;
             justify-content: center;
             align-items: center;
             text-align: center;
-            flex-direction: column;
+            padding: 40px;
         }
 
         .cover h1 {
             font-size: 3rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            font-family: 'Brush Script MT', cursive;
+            font-weight: 600;
         }
 
         .cover p {
@@ -99,97 +85,225 @@
             opacity: 0.9;
         }
 
+        .discord-logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
         .open-hint {
             font-size: 1rem;
-            opacity: 0.7;
+            opacity: 0.8;
             animation: pulse 2s infinite;
-            border: 2px solid #FFF8DC;
+            border: 2px solid white;
             padding: 10px 20px;
             border-radius: 25px;
+            background: rgba(255,255,255,0.1);
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
+            0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.05); opacity: 1; }
         }
 
-        /* Memory page styling */
-        .memory-photo {
-            width: 180px;
-            height: 130px;
+        /* Discord UI Components */
+        .discord-header {
+            background: #2f3136;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid #202225;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            color: #dcddde;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .channel-icon {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .voice-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background: #4f545c;
+            color: #dcddde;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .control-btn.active {
+            background: #5865F2;
+        }
+
+        .control-btn.danger {
+            background: #ed4245;
+        }
+
+        .video-container {
+            flex: 1;
+            display: flex;
+            padding: 16px;
+            gap: 16px;
+            background: #36393f;
+        }
+
+        .main-video {
+            flex: 2;
+            background: #2f3136;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
-            transform: rotate(-2deg);
-            border: 4px solid white;
         }
 
-        .memory-photo:nth-child(even) {
-            transform: rotate(2deg);
+        .video-overlay {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        .memory-date {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #8B4513;
-            margin-bottom: 10px;
-            text-align: center;
+        .user-videos {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .memory-text {
-            font-size: 0.95rem;
+        .user-video {
+            background: #2f3136;
+            border-radius: 8px;
+            height: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-overlay {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .chat-sidebar {
+            width: 300px;
+            background: #2f3136;
+            border-left: 1px solid #202225;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            height: 48px;
+            background: #36393f;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border-bottom: 1px solid #202225;
+            color: #dcddde;
+            font-weight: 600;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            color: #dcddde;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 16px;
             line-height: 1.4;
-            text-align: center;
-            color: #5D4037;
-            font-style: italic;
-            padding: 0 10px;
         }
 
-        .polaroid {
-            background: white;
-            padding: 10px 10px 40px 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transform: rotate(-1deg);
-            margin-bottom: 15px;
+        .message-author {
+            font-weight: 600;
+            color: #5865F2;
+            margin-bottom: 4px;
         }
 
-        .polaroid:nth-child(even) {
-            transform: rotate(1deg);
+        .message-time {
+            font-size: 12px;
+            color: #72767d;
+            margin-left: 8px;
         }
 
-        .polaroid-text {
-            font-size: 0.8rem;
-            text-align: center;
-            margin-top: 10px;
-            color: #666;
-            font-family: 'Courier New', monospace;
+        .message-content {
+            color: #dcddde;
+        }
+
+        .emoji {
+            font-size: 16px;
+        }
+
+        /* Memory page specific */
+        .memory-date {
+            color: #5865F2;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         /* Final page styling */
         .final-page {
-            background: linear-gradient(145deg, #FFB6C1, #FFC0CB);
+            background: linear-gradient(135deg, #5865F2, #7289DA);
             justify-content: center;
             align-items: center;
             text-align: center;
-            flex-direction: column;
-            color: #8B008B;
-        }
-
-        .final-message {
-            max-width: 80%;
+            padding: 40px;
+            color: white;
         }
 
         .final-message h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            font-family: 'Brush Script MT', cursive;
+            font-weight: 600;
         }
 
         .final-message p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
             margin-bottom: 15px;
+            max-width: 80%;
         }
 
         .page-number {
@@ -197,7 +311,7 @@
             bottom: 10px;
             right: 20px;
             font-size: 0.8rem;
-            color: #8B4513;
+            color: #72767d;
             opacity: 0.6;
         }
 
@@ -212,38 +326,33 @@
 
         .nav-btn {
             padding: 10px 20px;
-            background: #8B4513;
+            background: #5865F2;
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 6px;
             cursor: pointer;
             transition: background 0.3s;
-            font-family: Georgia, serif;
+            font-family: inherit;
+            font-weight: 500;
         }
 
         .nav-btn:hover {
-            background: #A0522D;
+            background: #4752C4;
         }
 
         .nav-btn:disabled {
-            background: #ccc;
+            background: #4f545c;
             cursor: not-allowed;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .scrapbook {
-                width: 90vw;
+                width: 95vw;
                 height: 70vh;
-                max-width: 500px;
             }
             
-            .page-left, .page-right {
-                padding: 15px;
-            }
-            
-            .memory-photo {
-                width: 120px;
-                height: 90px;
+            .chat-sidebar {
+                width: 200px;
             }
             
             .cover h1 {
@@ -256,184 +365,470 @@
     <div class="scrapbook">
         <!-- Cover Page -->
         <div class="page cover" data-page="0">
-            <h1>Our Love Story 💕</h1>
-            <p>A scrapbook of memories</p>
-            <div class="open-hint">Click to open & explore →</div>
+            <div class="discord-logo">💜</div>
+            <h1>happy 11 months</h1>
+            <p> some 11's with you!</p>
+            <div class="open-hint"> click to open & explore! →</div>
         </div>
 
-        <!-- Page 1: First Meeting -->
+        <!-- Page 1: happy 11 months -->
         <div class="page" data-page="1">
-            <div class="page-left">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=300&h=200&fit=crop" alt="First meeting" class="memory-photo">
-                    <div class="polaroid-text">Where it all began ✨</div>
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">📞</span>
+                    <span>General Voice Channel</span>
                 </div>
-                <div class="memory-date">March 10, 2023</div>
+                <div class="voice-controls">
+                    <button class="control-btn">🎤</button>
+                    <button class="control-btn">📹</button>
+                    <button class="control-btn danger">📞</button>
+                </div>
             </div>
-            <div class="page-right">
-                <div class="memory-text">
-                    "I remember the exact moment I first saw you. You were laughing at something your friend said, and I knew I had to meet the person with such a beautiful smile. Little did I know you'd become my everything. 💫"
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="/Users/manasagolla/Downloads/pics/happy.png" alt="us" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/him2.png" alt="Him">
+                            <div class="user-overlay">Liam</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/me1.png" alt="me">
+                            <div class="user-overlay">Manasa</div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">June 17, 2025</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 12:00 AM</span></div>
+                            <div class="message-content">Hi Liam! Happy 11 months.</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 12:01 AM</span></div>
+                            <div class="message-content">Enjoy this mini discord themed scrapbook for this month. love you mucho <span class="emoji">✨</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 12:01 AM</span></div>
+                            <div class="message-content"> message me if you have any questions !! <span class="emoji">💖</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="page-number">1</div>
         </div>
 
-        <!-- Page 2: First Date -->
+        <!-- Page 2: 11 things that remind me of you -->
         <div class="page" data-page="2">
-            <div class="page-left">
-                <div class="memory-text">
-                    "Our first official date! I was so nervous I changed outfits three times. But the moment we started talking, everything felt so natural. That little café will always be special to us. ☕"
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">🎮</span>
+                    <span>11 things that remind me of you</span>
+                </div>
+                <div class="voice-controls">
+                    <button class="control-btn active">🎤</button>
+                    <button class="control-btn active">📹</button>
+                    <button class="control-btn">📞</button>
                 </div>
             </div>
-            <div class="page-right">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=300&h=200&fit=crop" alt="First date" class="memory-photo">
-                    <div class="polaroid-text">Our first date ❤️</div>
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=400&fit=crop" alt="Gaming setup" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen 🎮</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/fthim 02:08.png" alt="You gaming">
+                            <div class="user-overlay">Liam 🎯</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/me2.png" alt="Him gaming">
+                            <div class="user-overlay">Manasa 🕹️</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="memory-date">March 22, 2023</div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">June 17, 2025</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 9:15 PM</span></div>
+                            <div class="message-content">Our first gaming session together! <span class="emoji">🎮</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 9:16 PM</span></div>
+                            <div class="message-content">You carried me so hard but pretended I was good at the game <span class="emoji">😂</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 9:17 PM</span></div>
+                            <div class="message-content">That's when I knew you were a keeper <span class="emoji">💕</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="page-number">2</div>
         </div>
 
-        <!-- Page 3: First Kiss -->
+        <!-- Page 3: 11 of my favorite things i've eaten with you -->
         <div class="page" data-page="3">
-            <div class="page-left">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&h=200&fit=crop" alt="Sunset moment" class="memory-photo">
-                    <div class="polaroid-text">Perfect timing 💋</div>
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">🌙</span>
+                    <span>11 foods with you</span>
                 </div>
-                <div class="memory-date">April 5, 2023</div>
+                <div class="voice-controls">
+                    <button class="control-btn active">🎤</button>
+                    <button class="control-btn">📹</button>
+                    <button class="control-btn">📞</button>
+                </div>
             </div>
-            <div class="page-right">
-                <div class="memory-text">
-                    "Walking by the lake at sunset, you stopped and looked at me with those beautiful eyes. Time stood still when you leaned in for our first kiss. My heart still skips a beat thinking about it. 🌅"
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&h=400&fit=crop" alt="Night sky" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen 🌙</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/him3.png" alt="Sleepy you">
+                            <div class="user-overlay">Liam 😴</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/ft me 02:04.png" alt="Sleepy him">
+                            <div class="user-overlay">Manasa 🥱</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">May 20, 2023</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 3:00 AM</span></div>
+                            <div class="message-content">Our deep 3am conversations <span class="emoji">🌙</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 3:01 AM</span></div>
+                            <div class="message-content">Talking about everything and nothing until sunrise <span class="emoji">🌅</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 3:02 AM</span></div>
+                            <div class="message-content">Those were the moments I fell hardest for you <span class="emoji">💙</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="page-number">3</div>
         </div>
 
-        <!-- Page 4: Adventure Together -->
+        <!-- Page 4: the 11th day of talking to you  -->
         <div class="page" data-page="4">
-            <div class="page-left">
-                <div class="memory-text">
-                    "Our spontaneous road trip adventure! Getting lost was the best thing that happened because we discovered that hidden waterfall. You always make every moment an adventure. 🗺️"
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">🎬</span>
+                    <span>11th day with you</span>
+                </div>
+                <div class="voice-controls">
+                    <button class="control-btn active">🎤</button>
+                    <button class="control-btn active">📹</button>
+                    <button class="control-btn">📞</button>
                 </div>
             </div>
-            <div class="page-right">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=200&fit=crop" alt="Adventure" class="memory-photo">
-                    <div class="polaroid-text">Lost but found 🧭</div>
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="/Users/manasagolla/Downloads/pics/3rdpage.jpg" alt="Movie screen" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen 🍿</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/him5.png" alt="You watching">
+                            <div class="user-overlay">Liam 👀</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/me4.png" alt="Him watching">
+                            <div class="user-overlay">Manasa 🎭</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="memory-date">June 15, 2023</div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">May 5th, 2024</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 8:00 PM</span></div>
+                            <div class="message-content">Our virtual movie dates! <span class="emoji">🎬</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 8:01 PM</span></div>
+                            <div class="message-content">You always let me pick the movie even when I chose rom-coms <span class="emoji">😅</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 8:02 PM</span></div>
+                            <div class="message-content">Distance couldn't stop our date nights <span class="emoji">💕</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="page-number">4</div>
         </div>
 
-        <!-- Page 5: First "I Love You" -->
+        <!-- Page 5: 11 reasons I love you -->
         <div class="page" data-page="5">
-            <div class="page-left">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=300&h=200&fit=crop" alt="Starry night" class="memory-photo">
-                    <div class="polaroid-text">Under the stars ⭐</div>
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">💖</span>
+                    <span>The L Word</span>
                 </div>
-                <div class="memory-date">July 20, 2023</div>
+                <div class="voice-controls">
+                    <button class="control-btn active">🎤</button>
+                    <button class="control-btn active">📹</button>
+                    <button class="control-btn">📞</button>
+                </div>
             </div>
-            <div class="page-right">
-                <div class="memory-text">
-                    "Lying on that blanket, looking up at the stars, you whispered 'I love you' for the first time. I felt like the luckiest person in the universe. I love you too, more than all the stars above. ✨"
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=400&fit=crop" alt="Romantic moment" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/him1.png" alt="Your reaction">
+                            <div class="user-overlay">Liam 🥺</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/ftme 02:08.png" alt="His confession">
+                            <div class="user-overlay">Manasa 😍</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">May 14, 2024</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 10:30 PM</span></div>
+                            <div class="message-content">The night you said those three words <span class="emoji">💖</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 10:31 PM</span></div>
+                            <div class="message-content">I was so nervous but so happy at the same time</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 10:32 PM</span></div>
+                            <div class="message-content">I love you too, more than you'll ever know <span class="emoji">💫</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="page-number">5</div>
         </div>
 
-        <!-- Page 6: Meeting Family -->
+        <!-- Page 6: 11 places with you -->
         <div class="page" data-page="6">
-            <div class="page-left">
-                <div class="memory-text">
-                    "The day you met my family! I was so nervous, but you charmed everyone instantly. My mom still talks about how wonderful you are. You fit into my world perfectly. 👨‍👩‍👧‍👦"
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">😂</span>
+                    <span>11 Destinations</span>
+                </div>
+                <div class="voice-controls">
+                    <button class="control-btn active">🎤</button>
+                    <button class="control-btn active">📹</button>
+                    <button class="control-btn">📞</button>
                 </div>
             </div>
-            <div class="page-right">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1511895775582-549347909dd7?w=300&h=200&fit=crop" alt="Family dinner" class="memory-photo">
-                    <div class="polaroid-text">Family approved! 👍</div>
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&h=400&fit=crop" alt="Laughing together" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen🤪</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/him4.png" alt="You laughing">
+                            <div class="user-overlay">Liam 😂</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/me5.png" alt="Him being silly">
+                            <div class="user-overlay">Manasa 🤡</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="memory-date">September 8, 2023</div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">June 17th, 2025</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:45 PM</span></div>
+                            <div class="message-content">When we spent hours just being absolute goofballs <span class="emoji">🤪</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:46 PM</span></div>
+                            <div class="message-content">Your impressions had me crying laughing <span class="emoji">😭</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:47 PM</span></div>
+                            <div class="message-content">I love how we can be completely ourselves together <span class="emoji">💖</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="page-number">6</div>
         </div>
 
-        <!-- Page 7: Halloween Fun -->
+        <!-- Page 7: the 11th months -->
         <div class="page" data-page="7">
-            <div class="page-left">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1509557965039-c623818c2d85?w=300&h=200&fit=crop" alt="Halloween" class="memory-photo">
-                    <div class="polaroid-text">Spooky cute 🎃</div>
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">😂</span>
+                    <span>The 11'th month</span>
                 </div>
-                <div class="memory-date">October 31, 2023</div>
+                <div class="voice-controls">
+                    <button class="control-btn active">🎤</button>
+                    <button class="control-btn active">📹</button>
+                    <button class="control-btn">📞</button>
+                </div>
             </div>
-            <div class="page-right">
-                <div class="memory-text">
-                    "Our matching Halloween costumes were absolutely perfect! You make everything more fun, even trick-or-treating as adults. We got so many compliments on our creativity! 🎭"
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="/Users/manasagolla/Downloads/pics/11month.png" alt="Laughing together" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen 🤪</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/Screenshot 2025-06-15 at 6.34.53 PM.png" alt="You laughing">
+                            <div class="user-overlay">Liam 😂</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/ft 02:08.png" alt="Him being silly">
+                            <div class="user-overlay">Manasa 🤡</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">August 12, 2023</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:45 PM</span></div>
+                            <div class="message-content">When we spent hours just being absolute goofballs <span class="emoji">🤪</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:46 PM</span></div>
+                            <div class="message-content">Your impressions had me crying laughing <span class="emoji">😭</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:47 PM</span></div>
+                            <div class="message-content">I love how we can be completely ourselves together <span class="emoji">💖</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="page-number">7</div>
         </div>
 
-        <!-- Page 8: Christmas Magic -->
+        <!-- Page 8: Celebrating Milestones -->
         <div class="page" data-page="8">
-            <div class="page-left">
-                <div class="memory-text">
-                    "Our first Christmas together was pure magic. Decorating the tree, baking cookies, and waking up together on Christmas morning - it felt like home. You're my favorite present. 🎄"
+            <div class="discord-header">
+                <div class="channel-info">
+                    <span class="channel-icon">😂</span>
+                    <span>you're my 11/10</span>
+                </div>
+                <div class="voice-controls">
+                    <button class="control-btn active">🎤</button>
+                    <button class="control-btn active">📹</button>
+                    <button class="control-btn">📞</button>
                 </div>
             </div>
-            <div class="page-right">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=300&h=200&fit=crop" alt="Christmas" class="memory-photo">
-                    <div class="polaroid-text">Christmas magic ❄️</div>
+            <div style="display: flex; height: calc(100% - 48px);">
+                <div class="video-container">
+                    <div class="main-video">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&h=400&fit=crop" alt="Laughing together" class="video-frame">
+                        <div class="video-overlay">Manasa's Screen 🤪</div>
+                    </div>
+                    <div class="user-videos">
+                        <div class="user-video">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616c96d46e4?w=200&h=120&fit=crop" alt="You laughing">
+                            <div class="user-overlay">Liam 😂</div>
+                        </div>
+                        <div class="user-video">
+                            <img src="/Users/manasagolla/Downloads/pics/ft 02:08.png" alt="Him being silly">
+                            <div class="user-overlay">Manasa 🤡</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="memory-date">December 25, 2023</div>
+                <div class="chat-sidebar">
+                    <div class="chat-header">💬 Chat</div>
+                    <div class="chat-messages">
+                        <div class="message">
+                            <div class="memory-date">August 12, 2023</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:45 PM</span></div>
+                            <div class="message-content">When we spent hours just being absolute goofballs <span class="emoji">🤪</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:46 PM</span></div>
+                            <div class="message-content">Your impressions had me crying laughing <span class="emoji">😭</span></div>
+                        </div>
+                        <div class="message">
+                            <div class="message-author">You <span class="message-time">Today at 7:47 PM</span></div>
+                            <div class="message-content">I love how we can be completely ourselves together <span class="emoji">💖</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="page-number">8</div>
         </div>
 
-        <!-- Page 9: Recent Memory -->
-        <div class="page" data-page="9">
-            <div class="page-left">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1518414922567-62b3e0940065?w=300&h=200&fit=crop" alt="Recent date" class="memory-photo">
-                    <div class="polaroid-text">Always growing 🌱</div>
-                </div>
-                <div class="memory-date">February 14, 2024</div>
-            </div>
-            <div class="page-right">
-                <div class="memory-text">
-                    "Every day with you brings new memories. This Valentine's Day picnic in the park reminded me why I fall in love with you more each day. Here's to making more beautiful memories together. 💐"
-                </div>
+        <!-- Final Page: Thank You -->
+        <div class="page final-page" data-page="8">
+            <div class="final-message">
+                <h2>Thank You for the Memories!</h2>
+                <p>Every moment we've shared has been a treasure. I can't wait to create even more beautiful memories with you.</p>
+                <p>Here's to us, our love, and all the adventures that await! 💖</p>
             </div>
             <div class="page-number">9</div>
-        </div>
-
-        <!-- Final Page -->
-        <div class="page final-page" data-page="10">
-            <div class="final-message">
-                <h2>Forever & Always 💖</h2>
-                <p>Looking through these memories makes my heart so full. Each photo, each moment, each laugh we've shared has brought us closer together.</p>
-                <p>Thank you for being my partner in this beautiful adventure called life. I can't wait to fill many more scrapbooks with our love story.</p>
-                <p><strong>Happy Anniversary, my love! Here's to forever with you. ❤️</strong></p>
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn" disabled>Previous</button>
+                <button class="nav-btn" id="nextBtn">Next</button>
             </div>
-            <div class="page-number">10</div>
         </div>
-    </div>
+    </div>      
 
-    <div class="navigation">
+
+
+        <div class="navigation">
         <button class="nav-btn" id="prevBtn" onclick="previousPage()">← Previous</button>
         <button class="nav-btn" id="nextBtn" onclick="nextPage()">Next →</button>
     </div>
 
     <script>
         let currentPage = 0;
-        const totalPages = 10;
+        const totalPages = 9;
 
         function updateNavigation() {
             document.getElementById('prevBtn').disabled = currentPage === 0;
@@ -476,3 +871,6 @@
     </script>
 </body>
 </html>
+
+
+
